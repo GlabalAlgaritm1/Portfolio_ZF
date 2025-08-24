@@ -1,0 +1,14 @@
+{
+    "contact": {
+      "title": "Sorov Yuborish",
+      "name": "Ismingiz",
+      "email": "Emailingiz",
+      "phone": "Telefon raqamingiz",
+      "message": "Habar kiriting",
+      "send": "Yuborish",
+      "sending": "Yuborilmoqda...",
+      "success": "Xabaringiz yuborildi ✅",
+      "telegram": "Telegram orqali bog'lanish"
+    }
+  }
+  

@@ -1,0 +1,18 @@
+{
+  "abouts": {
+    "title": "About Me",
+    "intro": "Hello, my name is Ahmadaliyev Zafarbek and I am 17 years old. I was born in 2008 and started learning programming in 2025. First, I learned Frontend and Google Sheets applications.",
+    "skills": "I mainly develop web applications using React, Tailwind CSS, and other advanced technologies. My goal is to create fast and convenient user interfaces on websites while maintaining a balance between design and functionality.",
+    "learning": "Currently, I am learning Backend development and working with Figma. In the future, I want to create applications that benefit people.",
+    "contact": "If you have questions, my Telegram contact is:",
+    "telegram": "Telegram",
+    "abilities_title": "What I Can Do",
+    "abilities": {
+      "seo": { "title": "SEO Optimization", "desc": "Boost website ranking in search engines" },
+      "design": { "title": "Strong Design", "desc": "Focus on elegance and attention to details in design" },
+      "quality": { "title": "High-Quality Development", "desc": "Develop websites following modern quality standards" },
+      "fast": { "title": "Fast Workflow", "desc": "Create websites efficiently within the set timeframe" }
+    },
+    "skills_title": "Skills"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "contact": {
+      "title": "Send a Message",
+      "name": "Your Name",
+      "email": "Your Email",
+      "phone": "Phone Number",
+      "message": "Write your message",
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Your message has been sent ✅",
+      "telegram": "Contact via Telegram"
+    }
+  }
+  

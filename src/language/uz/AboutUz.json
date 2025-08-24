@@ -1,0 +1,18 @@
+{
+  "abouts": {
+    "title": "Men haqimda",
+    "intro": "Assalomu aleykum men Ahmadaliyev Zafarbek yoshim 17 da. Men 2008chi yilman dasturlash sohasiga 2025chi yilda kirib kelganman. Men birinchi o'rinda Frontend va Google sheets dasturlarini o'rganganman.",
+    "skills": "Men asosan React, Tailwind CSS va boshqa ilg'or texnologiyalar yordamida veb ilovalar ishlab chiqaman. Maqsadim – veb saytlarda tezkor va qulay foydalanuvchi interfeysi yaratish, shuningdek, dizayn va funksionallik o'rtasida muvozanatni saqlashdir.",
+    "learning": "Hozirga kelip men Backend dasturlash va Figma dasturlarida ishlashni o'rganyapman. Men kelajakda insonlarga manfati tegadigon dasturlar qilishni hohlaman.",
+    "contact": "Savollar bolsa telegram manzilim :",
+    "telegram": "Telegram",
+    "abilities_title": "Men nimalar qila olaman",
+    "abilities": {
+      "seo": { "title": "SEO optimizatsiya", "desc": "Saytni qidiruv tizimlarida yuqori o'rinlarga ko'tarish" },
+      "design": { "title": "Kuchli dizayn", "desc": "Dizayn jarayonida nafislik va detallarga katta e’tibor qaratish" },
+      "quality": { "title": "Sifatli ishlab chiqish", "desc": "Saytlarni yuqori sifatli va zamonaviy standartlarga mos ishlab chiqish" },
+      "fast": { "title": "Tezkor ish jarayoni", "desc": "Belgilangan vaqt ichida samarali va tezkor sayt yaratish" }
+    },
+    "skills_title": "Maxorat"
+  }
+}
