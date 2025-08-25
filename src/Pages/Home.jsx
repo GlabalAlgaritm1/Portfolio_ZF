@@ -10,7 +10,7 @@ const Home = () => {
   const { t } = useTranslation()
 
   return (
-    <section className={`${Elements.Container} py-[21px] mt-32 pb-52 text-center px-4 sm:px-6 lg:px-8 max-sm:pb-60 max-sm:mt-4`}>
+    <section className={`${Elements.Container} py-[21px] mt-32 pb-52 text-center px-4 sm:px-6 lg:px-8 max-sm:pb-60 max-sm:mt-32`}>
       <h1 className='text-2xl sm:text-3xl md:text-4xl font-serif font-semibold'>
         Zafarbek Ahmadaliyev
       </h1>
