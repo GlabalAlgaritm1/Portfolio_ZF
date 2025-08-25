@@ -3,11 +3,15 @@ import { Elements } from '../Assets/Data';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../Components/useTitle';
+
+
 
 const TELEGRAM_BOT_TOKEN = '8314792220:AAGcxtFBHaXLmd4uaTm5udxhNd-ZANtIGzA'; // xavfsiz joyda saqlang
 const CHAT_ID = '7764198922';
 
 const Contact = () => {
+  useTitle("Contact")
   const { t } = useTranslation();
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [loading, setLoading] = useState(false);
@@ -66,7 +70,7 @@ const Contact = () => {
             value={form.name}
             onChange={handleChange}
             type="text"
-            placeholder={t("contact.name")}
+            placeholder={t("contact.name")} 
             required
             autoComplete='off'
             className='bg-black border rounded-md w-full py-3 px-3 placeholder-white font-semibold focus:outline-none hover:bg-white/10 transition duration-300'

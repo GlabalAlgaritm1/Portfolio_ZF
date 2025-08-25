@@ -3,8 +3,10 @@ import { Link } from 'react-router'
 import { Elements } from '../Assets/Data'
 import { useTranslation } from 'react-i18next'
 import Driver from '../Components/Driver'
+import useTitle from '../Components/useTitle'
 
 const Home = () => {
+  useTitle("Bosh sahifa")
   const { t } = useTranslation()
 
   return (

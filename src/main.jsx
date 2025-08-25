@@ -17,6 +17,9 @@ import HomeUz from '../src/language/uz/HomeUz.json'
 import AboutUz from '../src/language/uz/AboutUz.json'
 import ProjectsUz from '../src/language/uz/ProjectsUz.json'
 import ContactUz from '../src/language/uz/ContactUz.json'
+// Page Title 
+import PageEng from '../src/language/eng/PageEng.json'
+import PageUz from '../src/language/uz/PageUz.json'
 
 i18next
   .use(LanguageDetector)
@@ -35,6 +38,7 @@ i18next
           ...AboutEng,
           ...ProjectsEng,
           ...ContactEng,
+          ...PageEng,
         }
       },
       uz: {
@@ -44,6 +48,7 @@ i18next
           ...AboutUz,
           ...ProjectsUz,
           ...ContactUz,
+          ...PageUz,
         }
       }
     }

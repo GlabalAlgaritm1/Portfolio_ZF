@@ -2,6 +2,9 @@ import React from 'react';
 import { Elements } from '../Assets/Data';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
+// Title 
+import useTitle from '../Components/useTitle';
+
 
 // icons 
 import telegram from '../img/img_Icon/telegram.png';
@@ -20,7 +23,7 @@ import fast from '../img/img_nima/fast.svg';
 
 const About = () => {
   const { t } = useTranslation();
-
+  useTitle("Abaut")
   return (
     <section className={`${Elements.Container} py-3`}>
 

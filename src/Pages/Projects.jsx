@@ -12,8 +12,10 @@ import rasmgithub from "../img/img_Icon/github.png";
 import notsearch from "../img/img_Icon/notsearch.png";
 // Project name img
 import rasmMyteam from "../img/img_nima/Myteam.png";
+import useTitle from "../Components/useTitle";
 
 const Projects = () => {
+  useTitle("Projects")
   const { t } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImg, setModalImg] = useState("");
