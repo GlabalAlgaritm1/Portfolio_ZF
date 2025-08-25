@@ -5,8 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useTitle from '../Components/useTitle';
 
-const TELEGRAM_BOT_TOKEN = 'BOT_TOKEN'; // xavfsiz joyda saqlang (env faylga)
-const CHAT_ID = 'CHAT_ID';
+const TELEGRAM_BOT_TOKEN = '8314792220:AAGcxtFBHaXLmd4uaTm5udxhNd-ZANtIGzA'; // xavfsiz joyda saqlang
+const CHAT_ID = '7764198922';
 
 const Contact = () => {
   useTitle("Contact");
