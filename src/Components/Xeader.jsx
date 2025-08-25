@@ -7,6 +7,10 @@ import { useTranslation } from "react-i18next";
 
 // Icons
 import Microfon from "../img/img_Icon/Microfon.png";
+import HomeIcon from "../img/img_Icon/home.svg";
+import AboutIcon from "../img/img_Icon/about.svg";
+import ProjectIcon from "../img/img_Icon/projects.svg";
+import ContactIcon from "../img/img_Icon/contact.svg";
 
 const Xeader = () => {
   const [loading, setLoading] = useState(false);
@@ -39,7 +43,6 @@ const Xeader = () => {
         event.results[event.results.length - 1][0].transcript.toLowerCase();
       console.log("Siz aytdingiz:", transcript);
 
-      // 🔗 Routing
       if (transcript.includes(t("home").toLowerCase())) {
         navigate("/");
       } else if (transcript.includes(t("abouta").toLowerCase())) {
@@ -50,7 +53,6 @@ const Xeader = () => {
         navigate("/Contact");
       }
 
-      // 🌍 Translate
       if (
         transcript.includes("translate uzbek") ||
         transcript.includes("uzbek")
@@ -76,7 +78,6 @@ const Xeader = () => {
   const handleMicClick = () => {
     setLoading(true);
 
-    // 🎤 Mic faollashtirish
     const utterance = new SpeechSynthesisUtterance(t("ready"));
     utterance.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
     window.speechSynthesis.speak(utterance);
@@ -95,53 +96,75 @@ const Xeader = () => {
   };
 
   return (
-    <header className={`${Elements.Container} border-b py-3 rounded-b-xl`}>
-      <section className="flex items-center justify-between">
-        <Link className="font-semibold text-2xl" to="/">
-          Zafarbek<span className="text-cyan-500">.</span>uz
-        </Link>
+    <>
+      {/* HEADER */}
+      <header className={`${Elements.Container} border-b py-3 rounded-b-xl`}>
+        <section className="flex items-center justify-between">
+          <Link className="font-semibold text-2xl" to="/">
+            Zafarbek<span className="text-cyan-500">.</span>uz
+          </Link>
 
-        <nav className="flex items-center gap-x-5">
-          <NavLink to="/">
-            <span className="border px-3 py-2 rounded-xl">{t("home")}</span>
-          </NavLink>
-          <NavLink to="/About">
-            <span className="border px-3 py-2 rounded-xl">{t("abouta")}</span>
-          </NavLink>
-          <NavLink to="/Projects">
-            <span className="border px-3 py-2 rounded-xl">{t("projects")}</span>
-          </NavLink>
-          <NavLink to="/Contact">
-            <span className="border px-3 py-2 rounded-xl">{t("contacta")}</span>
-          </NavLink>
+          <nav className="hidden md:flex items-center gap-x-5">
+            <NavLink to="/">
+              <span className="border px-3 py-2 rounded-xl">{t("home")}</span>
+            </NavLink>
+            <NavLink to="/About">
+              <span className="border px-3 py-2 rounded-xl">{t("abouta")}</span>
+            </NavLink>
+            <NavLink to="/Projects">
+              <span className="border px-3 py-2 rounded-xl">{t("projects")}</span>
+            </NavLink>
+            <NavLink to="/Contact">
+              <span className="border px-3 py-2 rounded-xl">{t("contacta")}</span>
+            </NavLink>
 
-          {/* 🎤 Microphone */}
-          {!isListening && (
+            {!isListening && (
+              <button
+                onClick={handleMicClick}
+                className="border rounded-full p-2 border-cyan-700"
+              >
+                <img width={24} height={24} src={Microfon} alt="microphone" />
+              </button>
+            )}
+
             <button
-              onClick={handleMicClick}
-              className="border rounded-full p-2 border-cyan-700"
+              onClick={toggleLanguage}
+              className="border rounded-lg px-3 py-1 bg-cyan-500 text-white"
             >
-              <img width={24} height={24} src={Microfon} alt="microphone" />
+              {i18n.language.toUpperCase()}
             </button>
-          )}
+          </nav>
+        </section>
 
-          {/* 🌍 Translate button */}
-          <button
-            onClick={toggleLanguage}
-            className="border rounded-lg px-3 py-1 bg-cyan-500 text-white"
-          >
-            {i18n.language.toUpperCase()}
-          </button>
-        </nav>
-      </section>
+        {loading && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-50">
+            <Loader type="ball-clip-rotate-multiple" active />
+          </div>
+        )}
+      </header>
 
-      {/* Loader */}
-      {loading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-50">
-          <Loader type="ball-clip-rotate-multiple" active />
+      {/* FOOTER */}
+      <footer className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 md:hidden">
+        <div className="flex justify-around">
+          <NavLink to="/" className="flex flex-col items-center">
+            <img src={HomeIcon} alt="home" className="w-6 h-6" />
+            <span className="text-xs">{t("home")}</span>
+          </NavLink>
+          <NavLink to="/About" className="flex flex-col items-center">
+            <img src={AboutIcon} alt="about" className="w-6 h-6" />
+            <span className="text-xs">{t("abouta")}</span>
+          </NavLink>
+          <NavLink to="/Projects" className="flex flex-col items-center">
+            <img src={ProjectIcon} alt="projects" className="w-6 h-6" />
+            <span className="text-xs">{t("projects")}</span>
+          </NavLink>
+          <NavLink to="/Contact" className="flex flex-col items-center">
+            <img src={ContactIcon} alt="contact" className="w-6 h-6" />
+            <span className="text-xs">{t("contacta")}</span>
+          </NavLink>
         </div>
-      )}
-    </header>
+      </footer>
+    </>
   );
 };
 
