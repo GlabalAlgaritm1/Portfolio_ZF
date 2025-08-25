@@ -45,7 +45,7 @@ const Driver = () => {
         <section>
             {/* Asosiy toggle tugma */}
             <button
-                className="bg-cyan-600 p-3 rounded-full fixed bottom-9 right-12 transition-transform duration-300 ease-in-out z-50"
+                className="bg-cyan-600 p-3 rounded-full fixed bottom-9 right-12 transition-transform duration-300 ease-in-out z-50 max-md:bottom-24 max-sm:bottom-24"
                 onClick={handleClick}
             >
                 <span className="absolute -inset-2 rounded-full bg-cyan-400 opacity-40 animate-pulse"></span>
