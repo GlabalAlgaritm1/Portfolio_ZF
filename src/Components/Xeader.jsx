@@ -144,7 +144,7 @@ const Xeader = () => {
       </header>
 
       {/* FOOTER */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-black border-t py-2 md:hidden">
+      <footer className="fixed bottom-0 left-0 right-0 bg-black border-t py-2 md:hidden z-50">
         <div className="flex justify-around">
           <NavLink to="/" className="flex flex-col items-center">
             <img src={HomeIcon} alt="home" className="w-6 h-6" />

@@ -1,14 +1,17 @@
 {
-    "contact": {
-      "title": "Send a Message",
-      "name": "Your Name",
-      "email": "Your Email",
-      "phone": "Phone Number",
-      "message": "Write your message",
-      "send": "Send",
-      "sending": "Sending...",
-      "success": "Your message has been sent ✅",
-      "telegram": "Contact via Telegram"
-    }
+  "contact": {
+    "title": "Are you interested in creating such websites?",
+    "subtitle": "Leave your information and we will contact you shortly!",
+    "name": "Your Name",
+    "namePlaceholder": "Enter your name",
+    "phone": "Your Phone Number",
+    "phonePlaceholder": "+998 90 123 45 67",
+    "message": "Your Message",
+    "messagePlaceholder": "Write your message...",
+    "send": "Send",
+    "loading": "Sending...",
+    "success": "Your message has been sent successfully!",
+    "error": "An error occurred while sending the message",
+    "userInfo": "User Information"
   }
-  
+}

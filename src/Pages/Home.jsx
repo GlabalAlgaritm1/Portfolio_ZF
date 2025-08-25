@@ -13,6 +13,9 @@ const Home = () => {
     <section className={`${Elements.Container} py-[21px] mt-32 pb-52 text-center px-4 sm:px-6 lg:px-8 max-sm:pb-60 max-sm:mt-32`}>
       <h1 className='text-2xl sm:text-3xl md:text-4xl font-serif font-semibold'>
         Zafarbek Ahmadaliyev
+        
+        const TELEGRAM_BOT_TOKEN = '8314792220:AAGcxtFBHaXLmd4uaTm5udxhNd-ZANtIGzA'; // xavfsiz joyda saqlang
+        const CHAT_ID = '7764198922';
       </h1>
 
       {/* Matnni tarjima bilan chiqarish */}

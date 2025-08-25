@@ -1,14 +1,17 @@
 {
-    "contact": {
-      "title": "Sorov Yuborish",
-      "name": "Ismingiz",
-      "email": "Emailingiz",
-      "phone": "Telefon raqamingiz",
-      "message": "Habar kiriting",
-      "send": "Yuborish",
-      "sending": "Yuborilmoqda...",
-      "success": "Xabaringiz yuborildi ✅",
-      "telegram": "Telegram orqali bog'lanish"
-    }
+  "contact": {
+    "title": "Sizda shunaqa saytlar tayyorlashda qiziqish bormi?",
+    "subtitle": "Ma’lumotlaringizni qoldiring va sizga tez fursatda aloqaga chiqamiz!",
+    "name": "Ismingiz",
+    "namePlaceholder": "Ismingizni yozing",
+    "phone": "Telefon raqamingiz",
+    "phonePlaceholder": "+998 90 123 45 67",
+    "message": "Xabaringiz",
+    "messagePlaceholder": "Xabaringizni yozing...",
+    "send": "Joʻnatish",
+    "loading": "Yuborilmoqda...",
+    "success": "Xabaringiz muvaffaqiyatli yuborildi!",
+    "error": "Xabar yuborishda xatolik yuz berdi",
+    "userInfo": "Foydalanuvchi ma'lumotlari"
   }
-  
+}

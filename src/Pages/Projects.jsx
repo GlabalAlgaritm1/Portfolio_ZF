@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { Elements } from "../Assets/Data";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
-import Loader from "react-loaders"; // 🔹 loader
-import "loaders.css/loaders.css";   // 🔹 style
+import Loader from "react-loaders"; 
+import "loaders.css/loaders.css";   
 
 // Icons
 import rasmlink from "../img/img_Icon/link.png";
@@ -23,8 +23,8 @@ const Projects = () => {
   const searchRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [loading, setLoading] = useState(true);       // 🔹 Page loader
-  const [searchLoading, setSearchLoading] = useState(false); // 🔹 Search loader
+  const [loading, setLoading] = useState(true);       
+  const [searchLoading, setSearchLoading] = useState(false); 
 
   const projects = [
     { name: "Myteam", img: rasmMyteam, level: "easy", color: "bg-green-500", shadow: "shadow-green-500", link: "/1" },
@@ -39,7 +39,7 @@ const Projects = () => {
     setModalOpen(true);
   };
 
-  // Ctrl + / tugmasi bilan inputga fokus
+  // Ctrl + / input focus
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.key === "/") {
@@ -51,13 +51,13 @@ const Projects = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // 🔹 Page loader (imitatsiya)
+  // Page loader
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  // 🔹 Search filter with loader
+  // Search filter
   const [filteredProjects, setFilteredProjects] = useState(projects);
 
   useEffect(() => {
@@ -80,13 +80,13 @@ const Projects = () => {
 
   return (
     <section className={`${Elements.Container} py-3`}>
-      <ul className="flex items-center justify-between">
+      <ul className="flex flex-col md:flex-row items-center justify-between gap-3">
         <li>
-          <h2 className="text-2xl border-b border-l rounded-b-lg rounded-lg w-60 text-center shadow-inner shadow-cyan-500 py-1">
+          <h2 className="text-lg sm:text-xl md:text-2xl border-b border-l rounded-b-lg rounded-lg w-full md:w-60 text-center shadow-inner shadow-cyan-500 py-1">
             {t("myProjects")}
           </h2>
         </li>
-        <li>
+        <li className="w-full md:w-auto">
           <input
             ref={searchRef}
             type="search"
@@ -95,14 +95,15 @@ const Projects = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="
+              w-full md:w-64
               bg-black 
               border border-cyan-500 
               placeholder:text-cyan-400 
               rounded-md 
-              px-4 py-2 
+              px-3 py-2 
               text-white text-sm md:text-base
               focus:outline-none 
-              focus:ring-1 focus:ring-cyan-500 focus:ring-offset-0 
+              focus:ring-1 focus:ring-cyan-500 
               hover:border-cyan-400 hover:bg-white/10
               transition duration-300 ease-in-out
             "
@@ -110,27 +111,25 @@ const Projects = () => {
         </li>
       </ul>
 
-      {/* 🔹 Page Loader */}
+      {/* Loader */}
       {loading ? (
-        <div className="flex justify-center items-center min-h-[80vh]">
-          <Loader type="ball-clip-rotate-multiple" active />
-        </div>
-      ) : searchLoading ? (
-        /* 🔹 Search Loader */
         <div className="flex justify-center items-center min-h-[60vh]">
           <Loader type="ball-clip-rotate-multiple" active />
         </div>
+      ) : searchLoading ? (
+        <div className="flex justify-center items-center min-h-[50vh]">
+          <Loader type="ball-clip-rotate-multiple" active />
+        </div>
       ) : (
-        /* 🔹 Projects List */
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-5">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
               <li key={index} className="flex flex-col items-center">
-                <div className="flex justify-between items-center border my-5 w-full rounded-lg px-3 shadow-inner shadow-white">
+                <div className="flex justify-between items-center border my-3 w-full rounded-lg px-2 md:px-3 shadow-inner shadow-white">
                   <button className="py-2" onClick={() => openModal(project.img)}>
                     <img
-                      width={32}
-                      height={32}
+                      width={28}
+                      height={28}
                       className="border rounded-full p-1 hover:bg-white/20"
                       src={rasmview}
                       alt="View"
@@ -139,8 +138,8 @@ const Projects = () => {
                   <div className="flex items-center gap-x-2">
                     <Link to={project.link}>
                       <img
-                        width={32}
-                        height={32}
+                        width={28}
+                        height={28}
                         className="border rounded-full p-1 hover:bg-white/20"
                         src={rasmlink}
                         alt="Link"
@@ -148,8 +147,8 @@ const Projects = () => {
                     </Link>
                     <Link to="https://github.com/">
                       <img
-                        width={32}
-                        height={32}
+                        width={28}
+                        height={28}
                         className="border rounded-full p-1 hover:bg-white/20"
                         src={rasmgithub}
                         alt="Github"
@@ -158,26 +157,26 @@ const Projects = () => {
                   </div>
                 </div>
 
-                <div>
-                  <img className="border rounded-sm" src={project.img} alt="" />
+                <div className="w-full">
+                  <img className="border rounded-sm w-full h-auto object-cover" src={project.img} alt="" />
                 </div>
 
                 <div
-                  className={`w-full justify-between flex items-center gap-x-32 px-2 py-2 mt-5 border-b rounded-md pb-1 shadow-inner ${project.shadow}`}
+                  className={`w-full flex justify-between items-center px-2 py-2 mt-3 border-b rounded-md shadow-inner ${project.shadow}`}
                 >
-                  <p>{project.name}</p>
+                  <p className="text-sm sm:text-base">{project.name}</p>
                   <ul className="flex items-center gap-x-2">
-                    <li>{t(project.level)}</li>
-                    <li className="flex items-center gap-x-1">
-                      <span className={`w-4 h-4 border rounded-full ${project.color}`}></span>
+                    <li className="text-sm sm:text-base">{t(project.level)}</li>
+                    <li>
+                      <span className={`inline-block w-3 h-3 sm:w-4 sm:h-4 border rounded-full ${project.color}`}></span>
                     </li>
                   </ul>
                 </div>
               </li>
             ))
           ) : (
-            <div className="col-span-full flex justify-center items-center min-h-[80vh]">
-              <img className="w-48 opacity-80" src={notsearch} alt="Not Found" />
+            <div className="col-span-full flex justify-center items-center min-h-[50vh]">
+              <img className="w-40 sm:w-48 opacity-80" src={notsearch} alt="Not Found" />
             </div>
           )}
         </ul>
@@ -185,15 +184,15 @@ const Projects = () => {
 
       {/* Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-lg relative">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-3">
+          <div className="bg-white p-3 sm:p-5 rounded-lg relative max-w-lg w-full">
             <button
-              className="absolute top-2 right-2 text-black text-xl font-bold"
+              className="absolute top-2 right-2 text-black text-2xl font-bold"
               onClick={() => setModalOpen(false)}
             >
               &times;
             </button>
-            <img src={modalImg} alt="Project" className="max-w-full max-h-[80vh]" />
+            <img src={modalImg} alt="Project" className="max-w-full max-h-[70vh] object-contain" />
           </div>
         </div>
       )}
