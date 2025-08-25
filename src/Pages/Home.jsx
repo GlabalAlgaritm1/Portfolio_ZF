@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { Elements } from '../Assets/Data'
 import { useTranslation } from 'react-i18next'
+import Driver from '../Components/Driver'
 
 const Home = () => {
   const { t } = useTranslation()
@@ -32,6 +33,9 @@ const Home = () => {
           {t('aboutb')}
         </Link>
       </div>
+      <Driver />
+
+
     </section>
   )
 }
