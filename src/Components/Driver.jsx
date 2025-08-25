@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Telegram from '../img/img_Icon/telegram.png';
 import Profild from '../img/img_Icon/profil.png';
 import Left from '../img/img_Icon/Left.png';
-import Warning from '../img/img_Icon/Warning.png';
+import Warning from '../img/img_Icon/warning.png';
 import insta from '../img/img_Icon/instagram.png'
 import youtube from '../img/img_Icon/youtube.png'
 import gmail from '../img/img_Icon/gmail.png'
