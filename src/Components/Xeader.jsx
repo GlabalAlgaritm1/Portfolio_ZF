@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import Microfon from "../img/img_Icon/Microfon.png";
 import HomeIcon from "../img/img_Icon/home.svg";
 import AboutIcon from "../img/img_Icon/about.svg";
-import ProjectIcon from "../img/img_Icon/project.svg";
+import ProjectIcon from "../img/img_Icon/loyixa.svg";
 import ContactIcon from "../img/img_Icon/contact.svg";
 
 const Xeader = () => {
