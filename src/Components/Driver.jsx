@@ -49,14 +49,14 @@ const Driver = () => {
             duration: 1000, // animatsiya davomiyligi (ms)
             once: true,     // faqat bir marta ishlasin
         });
-    
+
         // ✅ Telefonlarda birinchi bo‘lib My Profil ochilsin
         if (window.innerWidth <= 768) {
             setIsOpen(true);
             setActiveDriver("driver1");
         }
     }, []);
-    
+
     return (
         <section>
             {/* Asosiy toggle tugma */}
@@ -161,6 +161,10 @@ const Driver = () => {
                         <p>{getBirthInfo("Aug 1, 2008")}</p>
                         <span className='text-white/45'>Tug'ilgan kunim</span>
                     </div>
+                    <button onClick={() =>
+                        setActiveDriver(activeDriver === 'driver3' ? null : 'driver3')} className='py-3 my-5 border w-full rounded-md bg-green-500 font-semibold'>
+                        Kurs sotip olish
+                    </button>
                     <p className='font-bold text-lg my-5'>My social media accounts:</p>
                     <ul className='grid grid-cols-4 gap-5'>
                         <li>
@@ -184,7 +188,8 @@ const Driver = () => {
                             </Link>
                         </li>
                     </ul>
-                </div>            </div>
+                </div>
+            </div>
 
             {/* Kurs Panel (driver3) */}
             <div
