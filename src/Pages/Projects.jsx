@@ -175,7 +175,7 @@ const Projects = () => {
               </li>
             ))
           ) : (
-            <div className="col-span-full flex justify-center items-center min-h-[90vh]">
+            <div className="col-span-full flex justify-center items-center min-h-[50vh] max-h-[100vh]">
               <img className="w-40 sm:w-48 opacity-80" src={notsearch} alt="Not Found" />
             </div>
           )}
