@@ -193,7 +193,7 @@ const Driver = () => {
 
             {/* Kurs Panel (driver3) */}
             <div
-                className={`fixed top-0 left-0 w-[335px] h-full bg-black border-r rounded-lg shadow-white shadow-lg z-50 flex flex-col p-4 transform transition-transform duration-500 ease-in-out ${activeDriver === 'driver3' ? 'translate-x-0' : '-translate-x-full'}`}
+                className={`fixed top-0 left-0 w-[335px] h-full bg-black border-r rounded-lg shadow-white shadow-lg z-50 flex flex-col p-4 transform transition-transform duration-500 ease-in-out ${activeDriver === 'driver3' ? 'translate-x-0' : '-translate-x-full'} max-sm:w-full`}
             >
                 <div className="flex flex-col flex-1 overflow-y-auto">
                     <h2 className="text-xl font-semibold mb-3">Kursga yozilish</h2>
