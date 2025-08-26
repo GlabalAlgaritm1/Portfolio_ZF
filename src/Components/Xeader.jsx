@@ -170,7 +170,7 @@ const Xeader = () => {
             {/* 🎤 Mikrofon tugmasi */}
             <button
               onClick={handleMicClick}
-              className={`border rounded-full p-2 transition ${
+              className={`border rounded-full p-2 transition max-md:hidden ${
                 isListening
                   ? "bg-green-700 border-green-700"
                   : "bg-green-500 border-cyan-700"
