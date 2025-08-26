@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { Elements } from "../Assets/Data";
 import Loader from "react-loaders";
@@ -15,23 +15,24 @@ import ContactIcon from "../img/img_Icon/contact.svg";
 const Xeader = () => {
   const [loading, setLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
-  // 🎤 SpeechRecognition instance
-  let recognition = null;
-  if (typeof window !== "undefined") {
+  // 🎤 SpeechRecognition init
+  useEffect(() => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      recognition = new SpeechRecognition();
-      recognition.continuous = false; // faqat bitta gapni yozadi
-      recognition.interimResults = false;
-    }
-  }
 
-  useEffect(() => {
-    if (!recognition) return;
+    if (!SpeechRecognition) {
+      console.warn("❌ SpeechRecognition API mavjud emas!");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
+    recognition.continuous = true; // doim tinglaydi
+    recognition.interimResults = false;
 
     recognition.onresult = (event) => {
       const transcript =
@@ -55,9 +56,6 @@ const Xeader = () => {
         i18n.changeLanguage("en");
         localStorage.setItem("lang", "en");
       }
-
-      setIsListening(false);
-      setLoading(false);
     };
 
     recognition.onerror = (err) => {
@@ -65,10 +63,18 @@ const Xeader = () => {
       setIsListening(false);
       setLoading(false);
     };
-  }, [recognition, navigate, i18n, t]);
 
+    recognition.onend = () => {
+      setIsListening(false);
+      setLoading(false);
+    };
+
+    recognitionRef.current = recognition;
+  }, [i18n.language, navigate, t]);
+
+  // 🎤 Mikrofon tugmasi
   const handleMicClick = () => {
-    if (!recognition) {
+    if (!recognitionRef.current) {
       alert("❌ Sizning brauzeringiz ovoz bilan boshqarishni qo‘llab-quvvatlamaydi!");
       return;
     }
@@ -81,15 +87,19 @@ const Xeader = () => {
     window.speechSynthesis.speak(utterance);
 
     utterance.onend = () => {
-      recognition.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
-      recognition.start();
+      recognitionRef.current.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
+      recognitionRef.current.start();
     };
   };
 
+  // 🌐 Tilni almashtirish
   const toggleLanguage = () => {
     const newLang = i18n.language === "en" ? "uz" : "en";
     i18n.changeLanguage(newLang);
     localStorage.setItem("lang", newLang);
+    if (recognitionRef.current) {
+      recognitionRef.current.lang = newLang === "en" ? "en-US" : "uz-UZ";
+    }
   };
 
   return (
