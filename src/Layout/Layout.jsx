@@ -4,7 +4,7 @@ import { Outlet } from 'react-router'
 
 const Layout = () => {
   return (
-    <section className='bg-black text-white'>
+    <section className='bg-black text-white select-none'>
         <Xeader/>
         <main>
             <Outlet/>
