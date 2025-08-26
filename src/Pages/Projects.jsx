@@ -82,7 +82,7 @@ const Projects = () => {
     <section className={`${Elements.Container} py-3`}>
       <ul className="flex flex-col md:flex-row items-center justify-between gap-3">
         <li>
-          <h2 className="text-lg sm:text-xl md:text-2xl border-b border-l rounded-b-lg rounded-lg w-full md:w-60 text-center shadow-inner shadow-cyan-500 py-1">
+          <h2 className="text-lg sm:text-xl md:text-2xl border-b border-l rounded-b-lg rounded-lg w-full md:w-60 max-sm:w-96 text-center shadow-inner shadow-cyan-500 py-1">
             {t("myProjects")}
           </h2>
         </li>
@@ -113,15 +113,15 @@ const Projects = () => {
 
       {/* Loader */}
       {loading ? (
-        <div className="flex justify-center items-center min-h-[60vh]">
+        <div className="flex justify-center items-center min-h-[90vh]">
           <Loader type="ball-clip-rotate-multiple" active />
         </div>
       ) : searchLoading ? (
-        <div className="flex justify-center items-center min-h-[50vh]">
+        <div className="flex justify-center items-center min-h-[90vh]">
           <Loader type="ball-clip-rotate-multiple" active />
         </div>
       ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-5">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-5 max-md:mb-32 sm:mb-32">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
               <li key={index} className="flex flex-col items-center">
@@ -175,7 +175,7 @@ const Projects = () => {
               </li>
             ))
           ) : (
-            <div className="col-span-full flex justify-center items-center min-h-[50vh]">
+            <div className="col-span-full flex justify-center items-center min-h-[90vh]">
               <img className="w-40 sm:w-48 opacity-80" src={notsearch} alt="Not Found" />
             </div>
           )}

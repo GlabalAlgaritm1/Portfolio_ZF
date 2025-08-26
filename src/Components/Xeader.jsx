@@ -172,8 +172,8 @@ const Xeader = () => {
               onClick={handleMicClick}
               className={`border rounded-full p-2 transition ${
                 isListening
-                  ? "bg-red-500 border-red-700"
-                  : "bg-white border-cyan-700"
+                  ? "bg-green-700 border-green-700"
+                  : "bg-green-500 border-cyan-700"
               }`}
             >
               <img width={24} height={24} src={Microfon} alt="microphone" />
