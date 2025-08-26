@@ -14,29 +14,24 @@ import ContactIcon from "../img/img_Icon/contact.svg";
 
 const Xeader = () => {
   const [loading, setLoading] = useState(false);
-  const [isListening, setIsListening] = useState(
-    localStorage.getItem("micEnabled") === "true"
-  );
+  const [isListening, setIsListening] = useState(false);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
-  // 🎤 SpeechRecognition
-  useEffect(() => {
-    if (!isListening) return;
-
+  // 🎤 SpeechRecognition instance
+  let recognition = null;
+  if (typeof window !== "undefined") {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert("Speech Recognition API is not supported ❌");
-      return;
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.continuous = false; // faqat bitta gapni yozadi
+      recognition.interimResults = false;
     }
+  }
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
-    recognition.continuous = true;
-    recognition.interimResults = false;
-
-    recognition.start();
+  useEffect(() => {
+    if (!recognition) return;
 
     recognition.onresult = (event) => {
       const transcript =
@@ -53,39 +48,41 @@ const Xeader = () => {
         navigate("/Contact");
       }
 
-      if (
-        transcript.includes("translate uzbek") ||
-        transcript.includes("uzbek")
-      ) {
+      if (transcript.includes("uzbek")) {
         i18n.changeLanguage("uz");
         localStorage.setItem("lang", "uz");
-      } else if (
-        transcript.includes("translate english") ||
-        transcript.includes("english")
-      ) {
+      } else if (transcript.includes("english")) {
         i18n.changeLanguage("en");
         localStorage.setItem("lang", "en");
       }
+
+      setIsListening(false);
+      setLoading(false);
     };
 
     recognition.onerror = (err) => {
       console.error("Speech recognition error:", err);
+      setIsListening(false);
+      setLoading(false);
     };
-
-    return () => recognition.stop();
-  }, [isListening, navigate, i18n.language, t]);
+  }, [recognition, navigate, i18n, t]);
 
   const handleMicClick = () => {
+    if (!recognition) {
+      alert("❌ Sizning brauzeringiz ovoz bilan boshqarishni qo‘llab-quvvatlamaydi!");
+      return;
+    }
+
     setLoading(true);
+    setIsListening(true);
 
     const utterance = new SpeechSynthesisUtterance(t("ready"));
     utterance.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
     window.speechSynthesis.speak(utterance);
 
     utterance.onend = () => {
-      setLoading(false);
-      setIsListening(true);
-      localStorage.setItem("micEnabled", "true");
+      recognition.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
+      recognition.start();
     };
   };
 
@@ -104,7 +101,7 @@ const Xeader = () => {
             Zafarbek<span className="text-cyan-500">.</span>uz
           </Link>
 
-          {/* 🔹 NAV hamma ekranlarda ko‘rinadi */}
+          {/* 🔹 NAV */}
           <nav className="flex items-center gap-x-3">
             <NavLink to="/" className="hidden md:inline">
               <span className="border px-3 py-2 rounded-xl">{t("home")}</span>
@@ -119,7 +116,7 @@ const Xeader = () => {
               <span className="border px-3 py-2 rounded-xl">{t("contacta")}</span>
             </NavLink>
 
-            {/* 🎤 Mikrofon tugmasi doim chiqadi */}
+            {/* 🎤 Mikrofon tugmasi */}
             <button
               onClick={handleMicClick}
               className={`border rounded-full p-2 transition ${
@@ -131,7 +128,7 @@ const Xeader = () => {
               <img width={24} height={24} src={Microfon} alt="microphone" />
             </button>
 
-            {/* 🌐 Translate tugmasi ham doim chiqadi */}
+            {/* 🌐 Translate tugmasi */}
             <button
               onClick={toggleLanguage}
               className="border rounded-lg px-3 py-1 bg-cyan-500 text-white"
