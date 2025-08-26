@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { Elements } from "../Assets/Data";
-import Loader from "react-loaders";
-import "loaders.css/loaders.css";
 import { useTranslation } from "react-i18next";
 
 // Icons
@@ -13,11 +11,18 @@ import ProjectIcon from "../img/img_Icon/lala.svg";
 import ContactIcon from "../img/img_Icon/contact.svg";
 
 const Xeader = () => {
-  const [loading, setLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+
+  // ✅ Saqlangan tilni olish
+  useEffect(() => {
+    const savedLang = localStorage.getItem("lang");
+    if (savedLang && savedLang !== i18n.language) {
+      i18n.changeLanguage(savedLang);
+    }
+  }, [i18n]);
 
   // 🎤 SpeechRecognition init
   useEffect(() => {
@@ -31,46 +36,82 @@ const Xeader = () => {
 
     const recognition = new SpeechRecognition();
     recognition.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
-    recognition.continuous = true; // doim tinglaydi
+    recognition.continuous = true;
     recognition.interimResults = false;
 
     recognition.onresult = (event) => {
       const transcript =
         event.results[event.results.length - 1][0].transcript.toLowerCase();
-      console.log("Siz aytdingiz:", transcript);
+      console.log("🎤 Siz aytdingiz:", transcript);
 
-      if (transcript.includes(t("home").toLowerCase())) {
+      // 🔹 Navigatsiya (ko‘proq sinonimlar bilan)
+      if (
+        transcript.includes("home") ||
+        transcript.includes("main") ||
+        transcript.includes("start") ||
+        transcript.includes("asosiy") ||
+        transcript.includes("bosh sahifa")
+      ) {
         navigate("/");
-      } else if (transcript.includes(t("abouta").toLowerCase())) {
+      } else if (
+        transcript.includes("about") ||
+        transcript.includes("haqimda") ||
+        transcript.includes("men haqimda") ||
+        transcript.includes("biz haqimizda") ||
+        transcript.includes("ma'lumot") ||
+        transcript.includes("haqida")
+      ) {
         navigate("/About");
-      } else if (transcript.includes(t("projects").toLowerCase())) {
+      } else if (
+        transcript.includes("projects") ||
+        transcript.includes("project") ||
+        transcript.includes("portfolio") ||
+        transcript.includes("loyihalar") ||
+        transcript.includes("proyektlar") ||
+        transcript.includes("ishlarim")
+      ) {
         navigate("/Projects");
-      } else if (transcript.includes(t("contacta").toLowerCase())) {
+      } else if (
+        transcript.includes("contact") ||
+        transcript.includes("aloqa") ||
+        transcript.includes("bog'lanish") ||
+        transcript.includes("xabar") ||
+        transcript.includes("telefon")
+      ) {
         navigate("/Contact");
       }
 
-      if (transcript.includes("uzbek")) {
-        i18n.changeLanguage("uz");
-        localStorage.setItem("lang", "uz");
-      } else if (transcript.includes("english")) {
+      // 🔹 Til almashtirish (ovoz orqali)
+      if (
+        transcript.includes("english") ||
+        transcript.includes("ingliz") ||
+        transcript.includes("en")
+      ) {
         i18n.changeLanguage("en");
         localStorage.setItem("lang", "en");
+        if (recognitionRef.current) recognitionRef.current.lang = "en-US";
+      } else if (
+        transcript.includes("uzbek") ||
+        transcript.includes("o'zbek") ||
+        transcript.includes("uz")
+      ) {
+        i18n.changeLanguage("uz");
+        localStorage.setItem("lang", "uz");
+        if (recognitionRef.current) recognitionRef.current.lang = "uz-UZ";
       }
     };
 
     recognition.onerror = (err) => {
       console.error("Speech recognition error:", err);
       setIsListening(false);
-      setLoading(false);
     };
 
     recognition.onend = () => {
       setIsListening(false);
-      setLoading(false);
     };
 
     recognitionRef.current = recognition;
-  }, [i18n.language, navigate, t]);
+  }, [i18n.language, navigate]);
 
   // 🎤 Mikrofon tugmasi
   const handleMicClick = () => {
@@ -79,24 +120,24 @@ const Xeader = () => {
       return;
     }
 
-    setLoading(true);
-    setIsListening(true);
-
-    const utterance = new SpeechSynthesisUtterance(t("ready"));
-    utterance.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
-    window.speechSynthesis.speak(utterance);
-
-    utterance.onend = () => {
+    if (!isListening) {
       recognitionRef.current.lang = i18n.language === "en" ? "en-US" : "uz-UZ";
       recognitionRef.current.start();
-    };
+      setIsListening(true);
+      console.log("🎤 Mikrofon ishga tushdi...");
+    } else {
+      recognitionRef.current.stop();
+      setIsListening(false);
+      console.log("⏹ Mikrofon o‘chirildi.");
+    }
   };
 
-  // 🌐 Tilni almashtirish
+  // 🌐 Tilni almashtirish tugmasi
   const toggleLanguage = () => {
     const newLang = i18n.language === "en" ? "uz" : "en";
     i18n.changeLanguage(newLang);
     localStorage.setItem("lang", newLang);
+
     if (recognitionRef.current) {
       recognitionRef.current.lang = newLang === "en" ? "en-US" : "uz-UZ";
     }
@@ -147,12 +188,6 @@ const Xeader = () => {
             </button>
           </nav>
         </section>
-
-        {loading && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-50">
-            <Loader type="ball-clip-rotate-multiple" active />
-          </div>
-        )}
       </header>
 
       {/* FOOTER */}
