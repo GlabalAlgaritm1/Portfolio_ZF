@@ -134,7 +134,7 @@ const Driver = () => {
 
             {/* Profil Panel (driver1) */}
             <div
-                className={`fixed top-0 left-0 w-[335px] h-full bg-black border-r rounded-r-lg shadow-lg z-50 flex flex-col p-4 text-white transform transition-transform duration-500 ease-in-out ${activeDriver === 'driver1' ? 'translate-x-0' : '-translate-x-full'}`}
+                className={`fixed top-0 left-0 w-[365px] h-full bg-black border-r rounded-r-lg shadow-lg z-50 flex flex-col p-4 text-white transform transition-transform duration-500 ease-in-out ${activeDriver === 'driver1' ? 'translate-x-0' : '-translate-x-full'}`}
             >
 
                 <div className="flex items-center justify-between mb-3">
